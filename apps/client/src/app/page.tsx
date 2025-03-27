@@ -7,9 +7,16 @@ export default async function Home() {
 
   return (
     <div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <PostLists posts={posts.data} />
-      </Suspense>
+      {posts.data.length === 0 ? (
+        <div>
+          <h1 className="text-3xl font-bold underline">No Posts Available</h1>
+          <p className="mt-4">Please check back later.</p>
+        </div>
+      ) : (
+        <Suspense fallback={<div>Loading...</div>}>
+          <PostLists posts={posts.data} />
+        </Suspense>
+      )}
     </div>
   );
 }
