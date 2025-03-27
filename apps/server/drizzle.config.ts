@@ -1,4 +1,4 @@
-import type { Config } from "drizzle-kit";
+import { defineConfig } from "drizzle-kit";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -15,11 +15,11 @@ if (!SUPABASE_DATABASE_URL) {
   throw new Error("SUPABASE_DATABASE_URL環境変数が設定されていません");
 }
 
-export default {
+export default defineConfig({
   dialect: "postgresql",
   schema: "./src/db/schema.ts",
   out: "./src/db/migrations",
   dbCredentials: {
     url: SUPABASE_DATABASE_URL,
   },
-} satisfies Config;
+});
