@@ -1,9 +1,27 @@
-import { Hono } from 'hono'
+import { Hono } from "hono";
+import { Env } from "./db/client";
+import { cors } from "hono/cors";
+import { postsRouter } from "./routes/posts";
 
-const app = new Hono()
+const app = new Hono<{ Bindings: Env }>();
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
-})
+app.use(
+  "/*",
+  cors({
+    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+    allowHeaders: ["Content-Type", "Authorization"],
+    allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    exposeHeaders: ["Content-Type"],
+    maxAge: 864_000,
+    credentials: true,
+  }),
+);
 
-export default app
+app.get("/", (c) => {
+  return c.text("Hello Hono!");
+});
+
+app.route("/api/posts", postsRouter);
+
+export default app;
+export type AppType = typeof app;
