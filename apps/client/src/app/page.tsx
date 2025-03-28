@@ -3,9 +3,6 @@ import { getPosts } from "@/services/getPosts";
 import Link from "next/link";
 import { Suspense } from "react";
 
-export const runtime = 'edge';
-export const dynamic = 'force-dynamic';
-
 export default async function Home() {
   const posts = await getPosts("10", "0");
 
