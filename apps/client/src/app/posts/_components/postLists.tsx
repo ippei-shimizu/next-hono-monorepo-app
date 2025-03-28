@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function PostLists({ posts }: { posts: Post[] }) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 px-4 py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen px-4 pt-8 pb-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <h1 className="mb-10 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
           <span className="block">Latest Posts</span>
