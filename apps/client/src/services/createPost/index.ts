@@ -2,7 +2,6 @@
 
 import { apiClient } from "@/lib/client";
 import { CreatePostInput } from "@server/types/post";
-import { revalidatePath } from "next/cache";
 
 export const createPost = async (data: CreatePostInput) => {
   const response = await apiClient.api.posts.$post({
@@ -11,6 +10,5 @@ export const createPost = async (data: CreatePostInput) => {
       body: data.body,
     },
   });
-  revalidatePath("/");
   return await response.json();
 };
